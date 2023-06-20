@@ -19,5 +19,5 @@ if astronvim.default_colorscheme then
 end
 
 require("astronvim.utils").conditional_func(astronvim.user_opts("polish", nil, false), true)
-require("herpich.core.options")
-require("herpich.core.colorscheme")
+require("user.core.options")
+-- require("herpich.core.colorscheme")

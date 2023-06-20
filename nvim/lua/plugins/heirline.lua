@@ -26,7 +26,7 @@ return {
         status.component.lsp(),
         status.component.treesitter(),
         status.component.nav(),
-        status.component.mode { surround = { separator = "right" } },
+        -- status.component.mode { surround = { separator = "right" } },
       },
       winbar = { -- winbar
         init = function(self) self.bufnr = vim.api.nvim_get_current_buf() end,

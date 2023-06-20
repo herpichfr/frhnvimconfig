@@ -144,7 +144,9 @@ end
 -- @usage local heirline_component = require("astronvim.utils.status").component.mode { mode_text = true }
 function M.mode(opts)
   opts = extend_tbl({
-    mode_text = false,
+    mode_text = {
+      padding = {left = 2, right = 2}
+    },
     paste = false,
     spell = false,
     surround = { separator = "left", color = hl.mode_bg },
