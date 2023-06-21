@@ -1,5 +1,6 @@
 return {
-  colorscheme = "catppuccin",
+  -- Colorscheme
+  colorscheme = "tokyonight",
 
   plugins = {
     {
@@ -17,7 +18,7 @@ return {
           show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
           term_colors = true, -- sets terminal colors (e.g. `g:terminal_color_0`)
           dim_inactive = {
-            enabled = true, -- dims the background color of inactive window
+            enabled = false, -- dims the background color of inactive window
             shade = "dark",
             percentage = 0.15, -- percentage of the shade to apply to the inactive window
           },
@@ -104,5 +105,57 @@ return {
         })  
       end,
     },
+
+    {
+      "tokyonight.nvim",
+      name = "tokyonight",
+      lazy = false,
+      priority = 1000,
+      -- opts = {},
+      config = function()
+        require("tokyonight").setup {
+          style = "night",
+          transparent = true,
+          commentStyle = "italic",
+          sidebars = {"qf", "vista_kind", "terminal", "packer"},
+          dark_float = true,
+          dark_sidebar = true,
+          colors = {
+            bg = "#1a1b26",
+          },
+        }
+      end,
+    },
   },
+
+  -- LSP
+  -- lsp = {
+  --   servers = {
+  --     "pyright",
+  --   },
+  -- 
+  --   config = {
+  --     pyright = {
+  --       settings = {
+  --         pyright = {
+  --           disableLanguageService = false,
+  --         },
+  --
+  --         python = {
+  --           analysis = {
+  --             autoSearchPaths = true,
+  --             diagnosticMode = "openFilesOnly",
+  --             userLibraryCodeForTypes = true,
+  --             diagnosticSeverityOverride = {
+  --               reportunusedImport = "hint",
+  --               reportMissingImports = "error",
+  --               reportGeneralTypeIssues = "none",
+  --               reportOptionalMemberAccess = "warning",
+  --             },
+  --           },
+  --         }
+  --       },
+  --     },
+  --   },
+  -- },
 }

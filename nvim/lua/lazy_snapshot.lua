@@ -49,4 +49,6 @@ return {
   { "williamboman/mason.nvim", version = "^1", optional = true },
   { "windwp/nvim-autopairs", commit = "41803bdbf75569571f93fd4571f6c654635b1b46", optional = true },
   { "windwp/nvim-ts-autotag", commit = "e254b306fb81ed69049cce526e7906150d73e0d1", optional = true },
+  { "folke/tokyonight.nvim"},
+  { "github/copilot.vim" },
 }

@@ -20,4 +20,5 @@ end
 
 require("astronvim.utils").conditional_func(astronvim.user_opts("polish", nil, false), true)
 require("user.core.options")
+require("user.core.keymaps")
 -- require("herpich.core.colorscheme")
