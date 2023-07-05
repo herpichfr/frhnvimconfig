@@ -30,7 +30,8 @@ opt.signcolumn = "yes"
 opt.backspace = "indent,eol,start"
 
 -- clipboard
-opt.clipboard:append("unnamedplus")
+-- opt.clipboard:append("unnamedplus")
+-- opt.clipboard:append("unnamed")
 
 -- split windows
 opt.splitright = true
@@ -38,6 +39,9 @@ opt.splitbelow = true
 
 -- make - look like as part of the word for neovim
 opt.iskeyword:append("-")
+
+-- set cursor style for different modes
+opt.guicursor = [[n-v-c:block,i-ci-ve:ver25,r-cr-o:hor20,o:hor50]]
 
 -- -- Copy to clipboard
 -- vnoremap  '<leader>y'  '"+y'

@@ -51,4 +51,24 @@ return {
   { "windwp/nvim-ts-autotag", commit = "e254b306fb81ed69049cce526e7906150d73e0d1", optional = true },
   { "folke/tokyonight.nvim"},
   { "github/copilot.vim" },
+  {
+  "jackMort/ChatGPT.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("chatgpt").setup( {
+        model = "gpt-3.5-turbo",
+        frequency_penalty = 0,
+        presence_penalty = 0,
+        max_tokens = 1000,
+        temperature = 0.7,
+        top_p = 1,
+        n = 1,
+      } )
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+}
 }
