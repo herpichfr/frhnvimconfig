@@ -211,7 +211,9 @@ export TERM=screen-256color
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/bin/lvim:$PATH"
 export PATH="$HOME/.nvm/versions/node/v20.3.1/bin:$PATH"
-export OPENAI_API_KEY=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
+# execute my .sh script located in $HOME/bin
+export PATH="$HOME/bin:$PATH"
+bash "$HOME"/bin/exp_keys.sh
 
 # just for fun
 echo -e "${C_RED}
