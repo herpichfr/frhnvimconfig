@@ -82,16 +82,46 @@ export ARROW=$'\ue0b0'
 export SMALL_ARROW=$'󰞔 '
 export FWD_ARROW=$'\uE0B1'
 export GIT_SYMBOL=$'\uE0A0'
+export TERMINAL_BADGE=$'\uf120'
+export TERMINAL_TMUX=$'\uebc8'
+export LINUX_UBUNTU=$'\uf31b'
+export LINUX_ARCH=$'\uebc6'
 
 # get if current directory is a git repo and branch
 function parse_git_branch {
     GITREPO=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
-    GITSTATUS=$([[ "$(git status 2> /dev/null | tail -n1)" != "nothing to commit, working tree clean" ]] && echo "⚠ " || echo "")
+    if [[ "$(git status 2> /dev/null | tail -n1)" == "nothing to commit, working tree clean" ]];
+    then
+        if [[ "$(git status 2> /dev/null | grep -o "Your branch is ahead of")" == "Your branch is ahead of" ]];
+        then
+            GITSTATUS="⬆ "
+        elif [[ "$(git status 2> /dev/null | grep -o "Your branch is behind")" == "Your branch is behind" ]];
+        then
+            GITSTATUS="⬇ "
+        elif [[ "$(git status 2> /dev/null | grep -o "Your branch is up-to-date")" == "Your branch is up-to-date" ]];
+        then
+            GITSTATUS=""
+        else
+            GITSTATUS="⚠ "
+        fi
+    else
+        GITSTATUS=$'\ueafc'
+    fi
+
     if [ ! "$GITREPO" == "" ];
     then
         if [ ! "$GITSTATUS" == "" ];
         then
             printf "${C_YELLOW_BG}${ARROW} ${C_RED}${GIT_SYMBOL} ${C_RED}%s %s ${C_YELLOW_BLUE}${C_YELLOW}${ARROW}" "$GITREPO" "$GITSTATUS"
+        elif [ "$GITSTATUS" == "⬆ " ];
+        then
+            printf "${C_BLACK_WHITE}${ARROW} ${C_BLUE}${GIT_SYMBOL} ${C_BLUE}%s ${C_WHITE_BLUE}${ARROW}" "$GITREPO"
+        elif [ "$GITSTATUS" == "⬇ " ];
+        then
+            printf "${C_BLACK_WHITE}${ARROW} ${C_BLUE}${GIT_SYMBOL} ${C_BLUE}%s ${C_WHITE_BLUE}${ARROW}" "$GITREPO"
+        elif [ "$GITSTATUS" == "⚠ " ];
+        then
+            printf "${C_BLACK_WHITE}${ARROW} ${C_RED}${GIT_SYMBOL} ${C_RED}%s ${C_WHITE_BLUE}${ARROW}" "$GITREPO"
         else
             printf "${C_BLACK_WHITE}${ARROW} ${C_BLUE}${GIT_SYMBOL} ${C_BLUE}%s ${C_WHITE_BLUE}${ARROW}" "$GITREPO"
         fi
@@ -106,7 +136,7 @@ function _update_ps1() {
         SHORT_PATH=$(printf "${C_BLUEBG_LIGHTGREEN} ~ ${C_BLUEBG_LIGHTBLACK}${FWD_ARROW}${C_BLUEBG_LIGHTGREEN} %s" "${PWD##*herpich/}" | sed "s|/| ${C_BLUEBG_LIGHTBLACK}${FWD_ARROW}${C_BLUEBG_LIGHTGREEN} |g")
     fi
 
-    PS1="${debian_chroot:+($debian_chroot)}${C_BLACK_BLACK}\[\e[01;33m\]\n[\A]\[${C_GREEN}\]\h@password $(parse_git_branch) ${SHORT_PATH} ${C_BLACKBG_BLUEFG}${ARROW}${C_RESET}\n ${C_RED}☢ ${C_CYAN}${SMALL_ARROW} ${C_RESET} "
+    PS1="${debian_chroot:+($debian_chroot)}${C_BLACK_BLACK}\[\e[01;33m\]\n[\A]\[${C_GREEN}\]\h@password $(parse_git_branch) ${SHORT_PATH} ${C_BLACKBG_BLUEFG}${ARROW}${C_RESET}\n ${C_RED}☢ ${C_CYAN}${TERMINAL_TMUX} ${LINUX_UBUNTU} ${LINUX_ARCH} ${TERMINAL_BADGE} ${C_RESET} "
 }
 
 if [ "$color_prompt" = yes ]; then
