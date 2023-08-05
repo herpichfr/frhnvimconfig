@@ -127,6 +127,8 @@ function parse_git_branch {
         else
             printf "${C_BLACK_WHITE}${ARROW} ${C_BLUE}${GIT_SYMBOL} ${C_BLUE}%s ${C_WHITE_BLUE}${ARROW}" "$GITREPO"
         fi
+    else
+        printf "${C_BLACKFG_BLUEBG}${ARROW}"
     fi
 }
 
@@ -134,7 +136,7 @@ function _update_ps1() {
     # check if current directory is HOME
     if [ "$PWD" == "$HOME" ]; then
         # SHORT_PATH=$(printf "${C_BLUEBG_LIGHTGREEN}%s" "${PWD##*herpich/}" | sed "s|/| ${C_BLUEBG_LIGHTBLACK}${FWD_ARROW}${C_BLUEBG_LIGHTGREEN} |g")
-        SHORT_PATH=$(printf "${C_BLACKFG_BLUEBG}${ARROW} ${C_BLUEBG_LIGHTGREEN}~${C_BLUEBG_LIGHTGREEN}")
+        SHORT_PATH=$(printf "${C_BLUEBG_LIGHTGREEN}~${C_BLUEBG_LIGHTGREEN}")
     else
         SHORT_PATH=$(printf "${C_BLUEBG_LIGHTGREEN} ~ ${C_BLUEBG_LIGHTBLACK}${FWD_ARROW}${C_BLUEBG_LIGHTGREEN} %s" "${PWD##*herpich/}" | sed "s|/| ${C_BLUEBG_LIGHTBLACK}${FWD_ARROW}${C_BLUEBG_LIGHTGREEN} |g")
     fi
