@@ -26,17 +26,6 @@ pmset_battery_remaining_time() {
 print_battery_remain() {
 	if command_exists "pmset"; then
 		pmset_battery_remaining_time
-	#elif command_exists "upower"; then
-	#	battery=$(upower -e | grep battery | head -1)
-	#	if is_chrome; then
-	#		if battery_discharging; then
-	#			upower -i $battery | grep 'time to empty' | awk '{printf "- %s %s left", $4, $5}'
-	#		else
-	#			upower -i $battery | grep 'time to full' | awk '{printf "- %s %s till full", $4, $5}'
-	#		fi
-	#	else
-	#		upower -i $battery | grep -E '(remain|time to empty)' | awk '{print $(NF-1)}'
-	#	fi
 	elif command_exists "acpi"; then
 		acpi -b | grep -Eo "[0-9]+:[0-9]+:[0-9]+"
 	fi
@@ -51,11 +40,31 @@ print_battery_full() {
 	fi
 }
 
+notify_battery_status() {
+    # Call `battery_percentage.sh`.
+    percentage=$($CURRENT_DIR/battery_percentage.sh | sed -e 's/%//')
+    if [ $percentage -le 30 -a $percentage -ge 16 ]; then
+        notify-send "Battery is low: $percentage%" "Remaning time is $(print_battery_remain)" --urgency=critical
+    elif [ $percentage -le 15 ];then
+        notify-send "tmux: Battery is critically low: $percentage. Please plug in your charger." "Remaning time is $(print_battery_remain)" --urgency=critical
+    else
+        true
+    fi
+}
+
+print_battery_percentage() {
+	# percentage displayed in the 2nd field of the 2nd row
+	if command_exists "pmset"; then
+		pmset -g batt | grep -o "[0-9]\{1,3\}%"
+	elif command_exists "acpi"; then
+		acpi -b | grep -Eo "[0-9]+%"
+	fi
+}
+
 main() {
+	print_battery_percentage
 	if battery_discharging; then
-		print_battery_remain
-	else
-		print_battery_full
+		notify_battery_status
 	fi
 }
 main

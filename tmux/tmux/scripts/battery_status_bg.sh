@@ -40,20 +40,6 @@ print_battery_status_bg() {
     fi
 }
 
-notify_battery_status() {
-    # Call `battery_percentage.sh`.
-    percentage=$($CURRENT_DIR/battery_percentage.sh | sed -e 's/%//')
-    if [ $percentage -eq 30 ]; then
-        notify-send "tmux: Battery is low: 30%"
-    elif [ $percentage -eq 20 ];then
-        notify-send "tmux: Battery is low: 20%"
-    elif [ $percentage -eq 10 ];then
-        notify-send "tmux: Battery is critically low: 10%. Will shutdown soon"
-    else
-        continue
-    fi
-}
-
 main() {
     get_charge_color_settings
 	print_battery_status_bg
