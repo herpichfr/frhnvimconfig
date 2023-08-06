@@ -179,7 +179,7 @@ set -g set-titles-string "#T"
 
 #temp="#(.tmux/cpu_temp/cpu_temp_status_bg.sh) CPU: #(sensors | grep 'CPU Temperature' | awk '{print $3}') | #(.tmux/cpu_temp/cores_status.sh)"
 
-batt="#(.tmux/scripts/battery_status_bg.sh) #(.tmux/scripts/battery_icon.sh) #(.tmux/scripts/battery_percentage.sh)"
+batt="#(.tmux/scripts/battery_status_bg.sh) #(.tmux/scripts/battery_icon.sh) #(.tmux/scripts/battery_remain.sh)"
 temp="#(.tmux/cpu_temp/cpu_temp_status_bg_ryzen.sh) CPU: #(sensors | grep 'Tctl' | awk '{print $2}') | "
 # temp="#(.tmux/cpu_temp/cpu_temp_status_bg.sh) #(sensors | grep 'Package id 0:' | awk '{printf $4}')" 
 mem='#(.tmux/cpu_temp/mem_status_bg.sh) MEM: #(.tmux/cpu_temp/mem_status_perc.sh)#[bg=black]|'
