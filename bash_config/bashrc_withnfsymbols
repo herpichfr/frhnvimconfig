@@ -108,6 +108,9 @@ function _parse_git_branch {
             then
                 GITSTATUS=""
                 printf "${C_BLACK_WHITE}${ARROW} ${C_BLUE}${GIT_SYMBOL} ${C_BLUE}%s ${C_WHITE_BLUE}${ARROW}" "$GITREPO"
+            elif [[ "$(git status 2> /dev/null | wc -l)" < "3" ]]; then
+                GITSTATUS=""
+                printf "${C_BLACK_WHITE}${ARROW} ${C_BLUE}${GIT_SYMBOL} ${C_BLUE}%s ${C_WHITE_BLUE}${ARROW}" "$GITREPO"
             else
                 GITSTATUS="⚠ "
                 printf "${C_YELLOW_BG}${ARROW} ${C_RED}${GIT_SYMBOL} ${C_RED}%s %s ${C_YELLOW_BLUE}${C_YELLOW}${ARROW}" "$GITREPO" "$GITSTATUS"
