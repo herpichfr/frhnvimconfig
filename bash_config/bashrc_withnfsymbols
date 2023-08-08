@@ -130,14 +130,15 @@ function _parse_git_branch {
 }
 
 function _update_ps1() {
-    if [ "$PWD" == "$HOME" ]; then
-        SHORT_PATH=$(printf "${C_BLUEBG_LIGHTGREEN}~${C_BLUEBG_LIGHTGREEN}")
+    if [[ "$PWD" != "$HOME" ]]; then
+        SHORT_PATH=$(printf "${C_BLUEBG_LIGHTGREEN}%s" "${PWD##*herpich/}" | sed "s|/| ${C_BLUEBG_LIGHTBLACK}${FWD_ARROW}${C_BLUEBG_LIGHTGREEN} |g")
     else
-        SHORT_PATH=$(printf "${C_BLUEBG_LIGHTGREEN} ~ ${C_BLUEBG_LIGHTBLACK}${FWD_ARROW}${C_BLUEBG_LIGHTGREEN} %s" "${PWD##*herpich/}" | sed "s|/| ${C_BLUEBG_LIGHTBLACK}${FWD_ARROW}${C_BLUEBG_LIGHTGREEN} |g")
+        SHORT_PATH=$(printf "${C_BLUEBG_LIGHTGREEN}~${C_BLUEBG_LIGHTGREEN}")
     fi
 
     PS1="${debian_chroot:+($debian_chroot)}${C_BLACK_BLACK}\[\e[01;33m\]\n[\A]\[${C_GREEN}\]\h@password $(_parse_git_branch) ${SHORT_PATH} ${C_BLACKBG_BLUEFG}${ARROW}${C_RESET}\n ${C_RED}☢ ${C_CYAN}${TERMINAL_TMUX} ${LINUX_UBUNTU} ${LINUX_ARCH} ${TERMINAL_BADGE} ${SMALL_ARROW}${C_RESET} "
 }
+echo "$SHORT_PATH"
 
 if [ "$color_prompt" = yes ]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
