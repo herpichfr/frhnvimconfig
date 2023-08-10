@@ -62,6 +62,7 @@ export C_GREEN='\e[01;32m'
 export C_BLUE='\e[01;34m'
 export C_YELLOW='\e[01;33m'
 export C_CYAN='\e[01;36m'
+export C_BLACK='\e[01;30m'
 # black text black background
 export C_BLACK_BLACK='\e[30;40m'
 # yellow background
@@ -73,8 +74,11 @@ export C_BLUEBG_LIGHTGREEN=$'\e[92;44m'
 export C_BLUEBG_LIGHTBLACK=$'\e[90;44m'
 export C_BLACKFG_BLUEBG=$'\e[30;44m'
 export C_BLACKBG_BLUEFG=$'\e[34;40m'
+export C_BLACKBG_GRAYFG=$'\e[90;40m'
 export C_WHITE_BLUE='\e[37;44m'
 export C_BLACK_WHITE='\e[30;47m'
+export C_CYANBG_BLACKFG=$'\e[30;46m'
+export C_GRAYBG_BYELLOWFG=$'\e[93;100;1m'
 # reset background and text color
 export C_RESET='\e[0m'
 
@@ -88,6 +92,7 @@ export TERMINAL_BADGE=$'\uf120'
 export TERMINAL_TMUX=$'\uebc8'
 export LINUX_UBUNTU=$'\uf31b'
 export LINUX_ARCH=$'\uebc6'
+export PYENV_SYMBOL=$'\ue73c'
 
 # get if current directory is a git repo and branch
 function _parse_git_branch {
@@ -128,7 +133,15 @@ function _parse_git_branch {
             fi
         fi
     else
-        printf "${C_BLACKFG_BLUEBG}${ARROW}"
+        printf '%s' "${C_BLACKFG_BLUEBG}${ARROW}"
+    fi
+}
+
+function _get_python_venv {
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        printf "${C_GRAYBG_BYELLOWFG}${PYENV_SYMBOL} %s ${C_BLACKBG_GRAYFG}${ARROW}" "$(basename "$VIRTUAL_ENV")"
+    else
+        printf ""
     fi
 }
 
@@ -136,10 +149,11 @@ function _update_ps1() {
     if [[ "$PWD" != "$HOME" ]]; then
         SHORT_PATH=$(printf "${C_BLUEBG_LIGHTGREEN}%s" "${PWD##*herpich/}" | sed "s|/| ${C_BLUEBG_LIGHTBLACK}${FWD_ARROW}${C_BLUEBG_LIGHTGREEN} |g")
     else
-        SHORT_PATH=$(printf "${C_BLUEBG_LIGHTGREEN}~${C_BLUEBG_LIGHTGREEN}")
+        SHORT_PATH=$(printf "%s~%s" "$C_BLUEBG_LIGHTGREEN" "$C_BLUEBG_LIGHTGREEN")
     fi
 
-    PS1="${debian_chroot:+($debian_chroot)}${C_BLACK_BLACK}\[\e[01;33m\]\n[\A]\[${C_GREEN}\]\h@password $(_parse_git_branch) ${SHORT_PATH} ${C_BLACKBG_BLUEFG}${ARROW}${C_RESET}\n ${C_RED}☢ ${C_CYAN}${TERMINAL_TMUX} ${LINUX_UBUNTU} ${LINUX_ARCH} ${TERMINAL_BADGE} ${SMALL_ARROW}${C_RESET} "
+    # PS1="${debian_chroot:+($debian_chroot)}$(_get_python_venv)${C_BLACK_BLACK}\[\e[01;33m\]\n[\A]\[${C_GREEN}\]\h@password $(_parse_git_branch) ${SHORT_PATH} ${C_BLACKBG_BLUEFG}${ARROW}${C_RESET}\n ${C_RED}☢ ${C_CYAN}${TERMINAL_TMUX} ${LINUX_UBUNTU} ${LINUX_ARCH} ${TERMINAL_BADGE} ${SMALL_ARROW}${C_RESET} "
+    PS1="${debian_chroot:+($debian_chroot)}$(_get_python_venv) ${C_YELLOW}[\A]${C_GREEN}\h@password $(_parse_git_branch) ${SHORT_PATH} ${C_BLACKBG_BLUEFG}${ARROW}${C_RESET}\n ${C_RED}☢ ${C_CYAN}${TERMINAL_TMUX} ${LINUX_UBUNTU} ${LINUX_ARCH} ${TERMINAL_BADGE} ${SMALL_ARROW}${C_RESET} "
 }
 echo "$SHORT_PATH"
 
