@@ -146,12 +146,14 @@ function _get_python_venv {
 }
 
 function _update_ps1() {
-    if [[ "$PWD" != "$HOME" ]]; then
-        SHORT_PATH=$(printf "${C_BLUEBG_LIGHTGREEN}%s" "${PWD##*herpich/}" | sed "s|/| ${C_BLUEBG_LIGHTBLACK}${FWD_ARROW}${C_BLUEBG_LIGHTGREEN} |g")
-    else
+    if [[ "$PWD" == "$HOME" ]]; then
         SHORT_PATH=$(printf "%s~%s" "$C_BLUEBG_LIGHTGREEN" "$C_BLUEBG_LIGHTGREEN")
+    elif [[ $PWD == $HOME* ]]; then
+        SHORT_PATH=$(printf "${C_BLUEBG_LIGHTGREEN}~ / %s" "${PWD##*herpich/}" | sed "s|/| ${C_BLUEBG_LIGHTBLACK}${FWD_ARROW}${C_BLUEBG_LIGHTGREEN} |g")
+    else
+        SHORT_PATH=$(printf "${C_BLUEBG_LIGHTGREEN}%s" "${PWD##*herpich/}" | sed "s|/| ${C_BLUEBG_LIGHTBLACK}${FWD_ARROW}${C_BLUEBG_LIGHTGREEN} |g")
     fi
-
+    # SHORT_PATH=$(printf "${C_BLUEBG_LIGHTGREEN}%s" "${PWD##*herpich/}" | sed "s|/| ${C_BLUEBG_LIGHTBLACK}${FWD_ARROW}${C_BLUEBG_LIGHTGREEN} |g")
     # PS1="${debian_chroot:+($debian_chroot)}$(_get_python_venv)${C_BLACK_BLACK}\[\e[01;33m\]\n[\A]\[${C_GREEN}\]\h@password $(_parse_git_branch) ${SHORT_PATH} ${C_BLACKBG_BLUEFG}${ARROW}${C_RESET}\n ${C_RED}☢ ${C_CYAN}${TERMINAL_TMUX} ${LINUX_UBUNTU} ${LINUX_ARCH} ${TERMINAL_BADGE} ${SMALL_ARROW}${C_RESET} "
     PS1="${debian_chroot:+($debian_chroot)}$(_get_python_venv) ${C_YELLOW}[\A]${C_GREEN}\h@password $(_parse_git_branch) ${SHORT_PATH} ${C_BLACKBG_BLUEFG}${ARROW}${C_RESET}\n ${C_RED}☢ ${C_CYAN}${TERMINAL_TMUX} ${LINUX_UBUNTU} ${LINUX_ARCH} ${TERMINAL_BADGE} ${SMALL_ARROW}${C_RESET} "
 }
