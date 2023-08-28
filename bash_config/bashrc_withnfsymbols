@@ -231,7 +231,7 @@ export PATH="$HOME/.local/bin/lvim:$PATH"
 export PATH="$HOME/.nvm/versions/node/v20.3.1/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 
-bash "$HOME"/bin/exp_keys.sh
+# bash "$HOME"/bin/exp_keys.sh
 export TERM=screen-256color
 
 # just for fun
