@@ -178,7 +178,8 @@ esac
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+    # alias ls='ls --color=auto'
+    alias ls='eza'
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
     
@@ -191,8 +192,8 @@ fi
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -lAh'
-alias la='ls -A'
+alias ll='eza -lAh'
+alias la='eza -A'
 alias l='ls -CF'
 
 # Alias definitions.
@@ -212,6 +213,9 @@ alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias astrovim='nvim'
 alias vim='nvim'
+alias cat='batcat'
+alias find='fdfind'
+alias rg='rg -p'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
