@@ -13,4 +13,8 @@ else
     get_weather
 fi
 
+if [ "$(cat "$HOME"/.cache/tmux-weather/weather.txt)" = "" ]; then
+    get_weather
+fi
+
 cat "$HOME"/.cache/tmux-weather/weather.txt
