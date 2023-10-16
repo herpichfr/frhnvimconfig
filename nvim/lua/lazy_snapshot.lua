@@ -51,6 +51,7 @@ return {
   { "windwp/nvim-ts-autotag", commit = "e254b306fb81ed69049cce526e7906150d73e0d1", optional = true },
   { "folke/tokyonight.nvim"},
   { "github/copilot.vim" },
+  {'davidgranstrom/nvim-markdown-preview'},
   {
   "jackMort/ChatGPT.nvim",
     event = "VeryLazy",

@@ -1,0 +1,31 @@
+Section "ServerLayout"
+         Identifier "layout"
+         Screen 0 "amdgpu"
+         Inactive "nvidia"
+         Option "AllowNVIDIAGPUScreens"
+EndSection
+
+Section "Device"
+    Identifier "amdgpu"
+    Driver "amdgpu"
+    Option "TearFree" "true"
+    Option "DRI" "3"
+    Option "VariableRefresh" "true"
+    BusID "PCI:6:0:0"
+EndSection
+
+Section "Screen"
+    Identifier "amdgpu"
+    Device "amdgpu"
+EndSection
+
+Section "Device"
+    Identifier "nvidia"
+    Driver "nvidia"
+    BusID "PCI:1:0:0"
+EndSection
+
+Section "Screen"
+        Identifier "nvidia"
+        Device "nvidia"
+EndSection

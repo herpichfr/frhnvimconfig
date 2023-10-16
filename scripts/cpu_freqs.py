@@ -4,7 +4,6 @@ import subprocess
 import time
 
 while True:
-    # get the CPU model
     command = "lscpu | grep 'Model name' | awk '{print $4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15}'"
     try:
         model = subprocess.check_output(
@@ -13,7 +12,6 @@ while True:
         print(e.output)
         exit(1)
 
-    # command to get cpu freqs
     command = "cat /proc/cpuinfo | grep MHz | awk '{print $4}'"
     try:
         freqs = subprocess.check_output(
@@ -23,26 +21,22 @@ while True:
         print(e.output)
         exit(1)
 
-    # remove empty strings
     freqs = list(filter(None, freqs))
-    # convert to float
     freqs = list(map(float, freqs))
-    # print freqs GHz with 2 decimals and in CPU order starting from 1
-    # color the output with ANSI escape codes depending on the frequency
     print("\033[2J\033[1;1H", end="")
     text = model.decode('utf-8') + '\n'
     for i in range(len(freqs)):
         if freqs[i] <= 2500:
-            text += "\033[0mCPU {:2s}: {:.2f} GHz\033[0m\n".format(
+            text += "\033[0mCore {:2s}: {:.2f} GHz\033[0m\n".format(
                 repr(i+1), freqs[i]/1000)
         elif freqs[i] <= 3400:
-            text += "\033[44mCPU {:2s}: {:.2f} GHz\033[0m\n".format(
+            text += "\033[44mCore {:2s}: {:.2f} GHz\033[0m\n".format(
                 repr(i+1), freqs[i]/1000)
         elif freqs[i] <= 4200:
-            text += "\033[43mCPU {:2s}: {:.2f} GHz\033[0m\n".format(
+            text += "\033[43mCore {:2s}: {:.2f} GHz\033[0m\n".format(
                 repr(i+1), freqs[i]/1000)
         else:
-            text += "\033[41mCPU {:2s}: {:.2f} GHz\033[0m\n".format(
+            text += "\033[41mCore {:2s}: {:.2f} GHz\033[0m\n".format(
                 repr(i+1), freqs[i]/1000)
 
     print(text[:-1], end='\r')  # print output without last \n
