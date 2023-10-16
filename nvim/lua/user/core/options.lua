@@ -42,15 +42,3 @@ opt.iskeyword:append("-")
 
 -- set cursor style for different modes
 opt.guicursor = [[n-v-c:block,i-ci-ve:ver25,r-cr-o:hor20,o:hor50]]
-
--- -- Copy to clipboard
--- vnoremap  '<leader>y'  '"+y'
--- nnoremap  '<leader>Y'  '"+yg_'
--- nnoremap  '<leader>y'  '"+y'
--- nnoremap  '<leader>yy'  '"+yy'
--- 
--- -- Paste from clipboard
--- nnoremap '<leader>p' '"+p'
--- nnoremap '<leader>P' '"+P' 
--- vnoremap '<leader>p' '"+p'
--- vnoremap '<leader>P' '"+P'

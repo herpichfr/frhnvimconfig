@@ -278,6 +278,6 @@ echo -e "${C_RED}
 
                          Welcome to HYDRA! 
 
-       WARNING: You are entering in the restricted area of Hydra.
-                     Enter your password to access:
+        WARNING: You are entering the restricted area of Hydra.
+                     Access credentials required:
 "

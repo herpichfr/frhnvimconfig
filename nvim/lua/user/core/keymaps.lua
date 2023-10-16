@@ -1,7 +1,13 @@
--- Remap <Ctrl><Tab> for Copilot
--- vim.api.nvim_set_keymap('n', '<C-Tab>', '<Plug>(copilot-next)', { silent = true })
--- vim.api.nvim_set_keymap('i', '<C-Tab>', '<Plug>(copilot-next)', { silent = true })
--- vim.api.nvim_set_keymap('n', '<C-c>', '"+y', { noremap = true })
--- vim.api.nvim_set_keymap('v', '<C-c>', '"+y', { noremap = true })
--- vim.api.nvim_set_keymap('n', '<C-v>', '"+p', { noremap = true })
--- vim.api.nvim_set_keymap('v', '<C-v>', '"+p', { noremap = true })
+-- -- Import the vim.api module
+-- local api = vim.api
+--
+-- -- Set the options for the key mappings
+-- local opts = { noremap = true, silent = true }
+--
+-- -- Map <C-Tab> to :bnext
+-- api.nvim_set_keymap('n', '<C-Tab>', ':bnext<CR>', opts)
+-- api.nvim_set_keymap('i', '<C-Tab>', ':bnext<CR>', opts)
+--
+-- -- Map <C-S-Tab> to :bprevious
+-- api.nvim_set_keymap('n', '<C-S-Tab>', ':bprevious<CR>', opts)
+-- api.nvim_set_keymap('i', '<C-S-Tab>', ':bprevious<CR>', opts)

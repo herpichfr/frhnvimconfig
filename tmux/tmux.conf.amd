@@ -182,7 +182,7 @@ set -g set-titles-string "#T"
 batt="#(.tmux/scripts/battery_status_bg.sh) #(.tmux/scripts/battery_icon.sh) #(.tmux/scripts/battery_remain.sh)"
 temp="#(.tmux/cpu_temp/cpu_temp_status_bg_ryzen.sh) CPU: #(sensors | grep 'Tctl' | awk '{print $2}') |" 
 mem='#(.tmux/cpu_temp/mem_status_bg.sh) MEM: #(.tmux/cpu_temp/mem_status_perc.sh)#[bg=black] |'
-resto='#(hostname) | %a %h-%d %H:%M | '
+resto='#(.tmux/scripts/getweather.sh) | #(hostname) | %a %h-%d %H:%M | '
 #infos="#[fg=green]#($HOME/.tmux/plugins/tmux-mem-cpu-load --colors --powerline-right --interval 2)#[default]"
 set -g status-right-length 150
 set -g status-right $resto$mem$temp$batt
