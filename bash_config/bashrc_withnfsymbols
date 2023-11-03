@@ -147,9 +147,9 @@ function _get_python_venv {
 
 function _update_ps1() {
     if [[ "$PWD" == "$HOME" ]]; then
-        SHORT_PATH=$(printf "%s~%s" "$C_BLUEBG_LIGHTGREEN" "$C_BLUEBG_LIGHTGREEN")
+        SHORT_PATH=$(printf "%s %s" "$C_BLUEBG_LIGHTGREEN" "$C_BLUEBG_LIGHTGREEN")
     elif [[ $PWD == $HOME* ]]; then
-        SHORT_PATH=$(printf "${C_BLUEBG_LIGHTGREEN}~ / %s" "${PWD##*herpich/}" | sed "s|/| ${C_BLUEBG_LIGHTBLACK}${FWD_ARROW}${C_BLUEBG_LIGHTGREEN} |g")
+        SHORT_PATH=$(printf "${C_BLUEBG_LIGHTGREEN} / %s" "${PWD##*herpich/}" | sed "s|/| ${C_BLUEBG_LIGHTBLACK}${FWD_ARROW}${C_BLUEBG_LIGHTGREEN} |g")
     else
         SHORT_PATH=$(printf "${C_BLUEBG_LIGHTGREEN}%s" "${PWD##*herpich/}" | sed "s|/| ${C_BLUEBG_LIGHTBLACK}${FWD_ARROW}${C_BLUEBG_LIGHTGREEN} |g")
     fi
