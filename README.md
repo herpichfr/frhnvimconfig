@@ -6,3 +6,6 @@ Include my bash config
 
 # tmux contiguration
 Include my tmux config
+
+# include courses
+Include information about programming courses successfully completed
