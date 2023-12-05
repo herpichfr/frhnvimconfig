@@ -21,4 +21,7 @@ end
 require("astronvim.utils").conditional_func(astronvim.user_opts("polish", nil, false), true)
 require("user.core.options")
 require("user.core.keymaps")
--- require("herpich.core.colorscheme")
+vim.cmd[[
+    let g:ale_linters = {'python': ['flake8'],}
+    let g:pylsp_settings = {'pylsp.plugins.pylsp_mypy.enabled': v:true}
+]]

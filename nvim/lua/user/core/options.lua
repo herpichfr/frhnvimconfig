@@ -41,4 +41,5 @@ opt.splitbelow = true
 opt.iskeyword:append("-")
 
 -- set cursor style for different modes
-opt.guicursor = [[n-v-c:block,i-ci-ve:ver25,r-cr-o:hor20,o:hor50]]
+-- opt.guicursor = [[n-v-c:block,i-ci-ve:ver25,r-cr-o:hor20,o:hor50]]
+opt.guicursor = [[n-v-c:block,i-ci-ve:ver5,r-cr-o:hor20,o:hor50]]
