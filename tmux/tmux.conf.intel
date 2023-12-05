@@ -176,22 +176,19 @@ set -g display-panes-active-colour "#ee82ee" #"#a66ebe"
 set -g set-titles on
 set -g set-titles-string "#T"
 
-#temp="#(.tmux/cpu_temp/cpu_temp_status_bg.sh) CPU: #(sensors | grep 'CPU Temperature' | awk '{print $3}') | #(.tmux/cpu_temp/cores_status.sh)"
-
 batt="#(.tmux/scripts/battery_status_bg.sh) #(.tmux/scripts/battery_icon.sh) #(.tmux/scripts/battery_remain.sh)#[bg=black] |"
-# temp="#(.tmux/cpu_temp/cpu_temp_status_bg_ryzen.sh) CPU: TCTL: #(sensors | grep 'Tctl' | awk '{print $2}') | TDIE: #(sensors | grep 'Tdie' | awk '{print $2}') | #(.tmux/cpu_temp/cores_temperature.sh)" 
 temp="#(.tmux/cpu_temp/cpu_temp_status_bg.sh) CPU: #(sensors | grep 'Package id 0' | awk '{print $4}')" 
 mem='#(.tmux/cpu_temp/mem_status_bg.sh) MEM: #(.tmux/cpu_temp/mem_status_perc.sh) | '
-resto='#(hostname) | %a %h-%d %H:%M | '
+resto='#(.tmux/scripts/getweather.sh) | #(hostname) | %a %h-%d %H:%M | '
 #infos="#[fg=green]#($HOME/.tmux/plugins/tmux-mem-cpu-load --colors --powerline-right --interval 2)#[default]"
 set -g status-right-length 150
 set -g status-right $resto$batt$mem$temp
 set -g status-left-length 50
 
 # List of plugins 
-set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'tmux-plugins/tmux-sensible'
-set -g @plugin 'thewtex/tmux-mem-cpu-load'
+# set -g @plugin 'tmux-plugins/tpm'
+# set -g @plugin 'tmux-plugins/tmux-sensible'
+# set -g @plugin 'thewtex/tmux-mem-cpu-load'
 
 # Other examples:
 # set -g @plugin 'github_username/plugin_name'
