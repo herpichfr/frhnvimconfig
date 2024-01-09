@@ -1,0 +1,6 @@
+.git
+.bin
+.vite
+node_modules
+*.pyc
+*.pyo
