@@ -4,3 +4,5 @@
 node_modules
 *.pyc
 *.pyo
+freqs.txt
+model.txt
