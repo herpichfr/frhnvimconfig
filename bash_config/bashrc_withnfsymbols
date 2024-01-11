@@ -63,13 +63,9 @@ export C_BLUE='\e[01;34m'
 export C_YELLOW='\e[01;33m'
 export C_CYAN='\e[01;36m'
 export C_BLACK='\e[01;30m'
-# black text black background
 export C_BLACK_BLACK='\e[30;40m'
-# yellow background
 export C_YELLOW_BG='\e[30;43m'
-# yellow text with blue background
 export C_YELLOW_BLUE='\e[43;44m'
-# blue blackground
 export C_BLUEBG_LIGHTGREEN=$'\e[92;44m'
 export C_BLUEBG_LIGHTBLACK=$'\e[90;44m'
 export C_BLACKFG_BLUEBG=$'\e[30;44m'
@@ -235,7 +231,6 @@ export PATH="$HOME/.local/bin/lvim:$PATH"
 export PATH="$HOME/.nvm/versions/node/v20.3.1/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 
-# bash "$HOME"/bin/exp_keys.sh
 export TERM=screen-256color
 
 # just for fun
