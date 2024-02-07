@@ -99,11 +99,11 @@ function _parse_git_branch {
         then
             if [[ "$(git status 2> /dev/null | grep -o "Your branch is ahead of")" == "Your branch is ahead of" ]];
             then
-                GITSTATUS="󰜷 "
+                GITSTATUS="󰜷"
                 printf "${C_YELLOW_BG}${ARROW} ${C_RED}${GIT_SYMBOL} ${C_RED}%s %s ${C_YELLOW_BLUE}${C_YELLOW}${ARROW}" "$GITREPO" "$GITSTATUS"
             elif [[ "$(git status 2> /dev/null | grep -o "Your branch is behind")" == "Your branch is behind" ]];
             then
-                GITSTATUS="󰜮 "
+                GITSTATUS="󰜮"
                 printf "${C_YELLOW_BG}${ARROW} ${C_RED}${GIT_SYMBOL} ${C_RED}%s %s ${C_YELLOW_BLUE}${C_YELLOW}${ARROW}" "$GITREPO" "$GITSTATUS"
             elif [[ "$(git status 2> /dev/null | grep -o "Your branch is up-to-date")" == "Your branch is up-to-date" ]];
             then
