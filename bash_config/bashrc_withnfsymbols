@@ -97,15 +97,15 @@ function _parse_git_branch {
     then
         if [[ "$(git status 2> /dev/null | tail -n1)" == "nothing to commit, working tree clean" ]];
         then
-            if [[ "$(git status 2> /dev/null | grep -o "Your branch is ahead of")" == "Your branch is ahead of" ]];
+            if [[ "$(git status 2> /dev/null | grep -o 'Your branch is ahead of')" == "Your branch is ahead of" ]];
             then
                 GITSTATUS="󰜷"
                 printf "${C_YELLOW_BG}${ARROW} ${C_RED}${GIT_SYMBOL} ${C_RED}%s %s ${C_YELLOW_BLUE}${C_YELLOW}${ARROW}" "$GITREPO" "$GITSTATUS"
-            elif [[ "$(git status 2> /dev/null | grep -o "Your branch is behind")" == "Your branch is behind" ]];
+            elif [[ "$(git status 2> /dev/null | grep -o 'Your branch is behind')" == "Your branch is behind" ]];
             then
                 GITSTATUS="󰜮"
                 printf "${C_YELLOW_BG}${ARROW} ${C_RED}${GIT_SYMBOL} ${C_RED}%s %s ${C_YELLOW_BLUE}${C_YELLOW}${ARROW}" "$GITREPO" "$GITSTATUS"
-            elif [[ "$(git status 2> /dev/null | grep -o "Your branch is up-to-date")" == "Your branch is up-to-date" ]];
+            elif [[ "$(git status 2> /dev/null | grep -o 'Your branch is up-to-date')" == "Your branch is up-to-date" ]];
             then
                 GITSTATUS=""
                 printf "${C_BLACK_WHITE}${ARROW} ${C_BLUE}${GIT_SYMBOL} ${C_BLUE}%s ${C_WHITE_BLUE}${ARROW}" "$GITREPO"
@@ -117,10 +117,10 @@ function _parse_git_branch {
                 printf "${C_YELLOW_BG}${ARROW} ${C_RED}${GIT_SYMBOL} ${C_RED}%s %s ${C_YELLOW_BLUE}${C_YELLOW}${ARROW}" "$GITREPO" "$GITSTATUS"
             fi
         else
-            if [[ "$(git status 2> /dev/null | grep -o "no changes added to commit")" == "no changes added to commit" ]]; then
+            if [[ "$(git status 2> /dev/null | grep -o 'no changes added to commit')" == "no changes added to commit" ]]; then
                 GITSTATUS=$'\ueafc'
                 printf "${C_YELLOW_BG}${ARROW} ${C_RED}${GIT_SYMBOL} ${C_RED}%s %s ${C_YELLOW_BLUE}${C_YELLOW}${ARROW}" "$GITREPO" "$GITSTATUS"
-            elif [[ "$(git status 2> /dev/null | grep -o "nothing added to commit but untracked files present")" == "nothing added to commit but untracked files present" ]]; then
+            elif [[ "$(git status 2> /dev/null | grep -o 'nothing added to commit but untracked files present')" == "nothing added to commit but untracked files present" ]]; then
                 GITSTATUS=$'\uf127'
                 printf "${C_BLACK_WHITE}${ARROW} ${C_BLUE}${GIT_SYMBOL} ${C_BLUE}%s %s ${C_WHITE_BLUE}${ARROW}" "$GITREPO" "$GITSTATUS"
             else
