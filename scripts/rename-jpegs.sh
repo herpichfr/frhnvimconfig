@@ -11,6 +11,11 @@ function PrintHelp {
 
 }
 
+if [ "$1" == "" ]; then
+    PrintHelp
+    exit 0
+fi
+
 while [ "$1" != "" ]; do
     case $1 in
         --newname   )           shift
@@ -22,13 +27,20 @@ while [ "$1" != "" ]; do
     shift
 done
 
+# check if find is installed
+if [[ ! -x /usr/bin/find ]]; then
+    echo "The command find is not installed. Exiting..."
+    exit 1
+fi
+
 counter=1
 
 IFS=$'\n'
 for imagename in $(/usr/bin/find ./ -iname "*.jpeg"); do
     imagenamenospace=$(echo $imagename | tr " " "\ ")
+    extension=$(echo $imagename | awk -F . '{print $NF}')
 
-    newimagename=$(echo "${newname}-$(printf '%03d' ${counter}).jpeg")
+    newimagename=$(echo $(echo $newname | tr " " "\ ")_$(printf "%04d" $counter).${extension})
     if [[ -f ${newimagename} ]]; then
         echo Image ${newimagename} already exists! Not renaming...
     else
