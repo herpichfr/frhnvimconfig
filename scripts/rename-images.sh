@@ -23,7 +23,7 @@ while [ "$1" != "" ]; do
                                 ;;
         *  )                    PrintHelp
                                 exit
-    esac
+    ;; esac
     shift
 done
 
@@ -35,21 +35,17 @@ fi
 
 counter=1
 
-IFS=$'\n'
-for imagename in $(/usr/bin/find ./ -iname "*.jpeg"); do
-    imagenamenospace=$(echo $imagename | tr " " "\ ")
-    extension=$(echo $imagename | awk -F . '{print $NF}')
-
-    newimagename=$(echo $(echo $newname | tr " " "\ ")_$(printf "%04d" $counter).${extension})
-    if [[ -f ${newimagename} ]]; then
-        echo Image ${newimagename} already exists! Not renaming...
+shopt -s globstar
+find ./ -regex '.*\.\(jpg\|JPG\|jpeg\|JPEG\|png\|PNG\|gif\|GIF\|bmp\|BMP\|tiff\|TIFF\|tif\|TIF\|ppm\|PPM\|pgm\|PGM\|pbm\|PBM\|pnm\|PNM\|webp\|WEBP\|heic\|HEIC\|heif\|HEIF\|bpg\|BPG\|jp2\|JP2\|j2k\|J2K\|jpf\|JPF\|jpx\|JPX\|jpm\|JPM\|mj2\|MJ2\)' | while read fname; do
+    extension=$(echo "$fname" | awk -F . '{print $NF}')
+    newimagename=$(echo "$newname"_"$(printf "%04d" "$counter").$extension")
+    echo "Renaming image" "$fname" to "$newimagename"...
+    cp "$fname" "$newimagename"
+    if [ -f "$newimagename" ]; then
+        echo "Image" "$fname" renamed to "$newimagename" successfully.
+        rm "$fname"
     else
-        echo "Renaming image" ${imagename} to ${newimagename}...
-        cp ${imagename} ${newimagename}
-        if [[ -f ${newimagename} ]]; then
-            rm ${imagenamenospace}
-        fi
+        echo "Image" "$fname" could not be renamed to "$newimagename".
     fi
     ((counter++))
 done
-IFS=''
