@@ -1,57 +1,74 @@
 return {
-  { "AstroNvim/astrotheme", version = "^1.1", optional = true },
-  { "JoosepAlviste/nvim-ts-context-commentstring", commit = "0bf8fbc2ca8f8cdb6efbd0a9e32740d7a991e4c3", optional = true },
-  { "L3MON4D3/LuaSnip", version = "^1", optional = true },
-  { "MunifTanjim/nui.nvim", version = "^0.1", optional = true },
-  { "NMAC427/guess-indent.nvim", commit = "b8ae749fce17aa4c267eec80a6984130b94f80b2", optional = true },
-  { "NvChad/nvim-colorizer.lua", commit = "dde3084106a70b9a79d48f426f6d6fec6fd203f7", optional = true },
-  { "Shatur/neovim-session-manager", commit = "fd92e73506601a48adb843cdc0a15f2e63513754", optional = true },
-  { "akinsho/toggleterm.nvim", version = "^2", optional = true },
-  { "b0o/SchemaStore.nvim", commit = "f0c276e019f50d039d2556454040769474dde02a", optional = true },
-  { "famiu/bufdelete.nvim", commit = "8d15a0a3189b02ac7ad9dd6dc089cc62edf095c6", optional = true },
-  { "folke/lazy.nvim", version = "^9", optional = true },
-  { "folke/neodev.nvim", version = "^2", optional = true },
-  { "folke/which-key.nvim", version = "^1", optional = true },
-  { "goolord/alpha-nvim", commit = "9e33db324b8bb7a147bce9ea5496686ee859461d", optional = true },
-  { "hrsh7th/cmp-buffer", commit = "3022dbc9166796b644a841a02de8dd1cc1d311fa", optional = true },
-  { "hrsh7th/cmp-nvim-lsp", commit = "0e6b2ed705ddcff9738ec4ea838141654f12eeef", optional = true },
-  { "hrsh7th/cmp-path", commit = "91ff86cd9c29299a64f968ebb45846c485725f23", optional = true },
-  { "hrsh7th/nvim-cmp", commit = "b8c2a62b3bd3827aa059b43be3dd4b5c45037d65", optional = true },
-  { "jay-babu/mason-null-ls.nvim", version = "^2", optional = true },
-  { "jay-babu/mason-nvim-dap.nvim", version = "^2", optional = true },
-  { "jose-elias-alvarez/null-ls.nvim", commit = "a138b14099e9623832027ea12b4631ddd2a49256", optional = true },
-  { "kevinhwang91/nvim-ufo", version = "^1", optional = true },
-  { "kevinhwang91/promise-async", version = "^1", optional = true },
-  { "lewis6991/gitsigns.nvim", version = "^0.6", optional = true },
-  { "lukas-reineke/indent-blankline.nvim", version = "^2", optional = true },
-  { "max397574/better-escape.nvim", commit = "7031dc734add47bb71c010e0551829fa5799375f", optional = true },
-  { "mfussenegger/nvim-dap", version = "^0.6", optional = true },
-  { "mrjones2014/smart-splits.nvim", version = "^1", optional = true },
-  { "neovim/nvim-lspconfig", commit = "295c646488d5baa63c6c4da68fe61171b9257375", optional = true },
-  { "numToStr/Comment.nvim", version = "^0.8", optional = true },
-  { "nvim-lua/plenary.nvim", version = "^0.1", optional = true },
-  { "nvim-neo-tree/neo-tree.nvim", version = "^2", optional = true },
-  { "nvim-telescope/telescope-fzf-native.nvim", commit = "9bc8237565ded606e6c366a71c64c0af25cd7a50", optional = true },
-  { "nvim-telescope/telescope.nvim", version = "^0.1", optional = true },
-  { "nvim-tree/nvim-web-devicons", commit = "2a125024a137677930efcfdf720f205504c97268", optional = true },
-  { "nvim-treesitter/nvim-treesitter", commit = "10b0da9f931c734b531eb095ea01cce53984205c", optional = true },
-  { "onsails/lspkind.nvim", commit = "57610d5ab560c073c465d6faf0c19f200cb67e6e", optional = true },
-  { "rafamadriz/friendly-snippets", commit = "b3cd8d77feb7871d8b04bb45bcd8154120a796a1", optional = true },
-  { "rcarriga/cmp-dap", commit = "d16f14a210cd28988b97ca8339d504533b7e09a4", optional = true },
-  { "rcarriga/nvim-dap-ui", version = "^3", optional = true },
-  { "rcarriga/nvim-notify", version = "^3", optional = true },
-  { "rebelot/heirline.nvim", commit = "2a151df2dc870e79b138a59ebaaaddf3d1b0d703", optional = true },
-  { "s1n7ax/nvim-window-picker", version = "^1", optional = true },
-  { "saadparwaiz1/cmp_luasnip", commit = "18095520391186d634a0045dacaa346291096566", optional = true },
-  { "stevearc/aerial.nvim", commit = "097fb436b2632b9546fddd13623da75d3674a704", optional = true },
-  { "stevearc/dressing.nvim", commit = "f16d7586fcdd8b2e3850d0abb7e46f944125cc25", optional = true },
-  { "williamboman/mason-lspconfig.nvim", version = "^1.1", optional = true },
-  { "williamboman/mason.nvim", version = "^1", optional = true },
-  { "windwp/nvim-autopairs", commit = "41803bdbf75569571f93fd4571f6c654635b1b46", optional = true },
-  { "windwp/nvim-ts-autotag", commit = "e254b306fb81ed69049cce526e7906150d73e0d1", optional = true },
+  { "AstroNvim/astrotheme", optional = true },
+  { "JoosepAlviste/nvim-ts-context-commentstring", optional = true },
+  { "L3MON4D3/LuaSnip", build = "make install_jsregexp", optional = true },
+  { "MunifTanjim/nui.nvim", optional = true },
+  { "NMAC427/guess-indent.nvim", optional = true },
+  { "NvChad/nvim-colorizer.lua", optional = true },
+  { "Shatur/neovim-session-manager", optional = true },
+  { "akinsho/toggleterm.nvim", optional = true },
+  { "b0o/SchemaStore.nvim", optional = true },
+  { "famiu/bufdelete.nvim", optional = true },
+  { "folke/lazy.nvim", optional = true },
+  { "folke/neodev.nvim", optional = true },
+  { "folke/which-key.nvim", optional = true },
+  { "goolord/alpha-nvim", optional = true },
+  { "hrsh7th/cmp-buffer", optional = true },
+  { "hrsh7th/cmp-nvim-lsp", optional = true },
+  { "hrsh7th/cmp-path", optional = true },
+  { "hrsh7th/nvim-cmp", optional = true },
+  { "jay-babu/mason-null-ls.nvim", optional = true },
+  { "jay-babu/mason-nvim-dap.nvim", optional = true },
+  { "jose-elias-alvarez/null-ls.nvim", optional = true },
+  { "kevinhwang91/nvim-ufo", optional = true },
+  { "kevinhwang91/promise-async", optional = true },
+  { "lewis6991/gitsigns.nvim", optional = true },
+  { "lukas-reineke/indent-blankline.nvim", version = "v2.*" },
+  { "max397574/better-escape.nvim", optional = true },
+  { "mfussenegger/nvim-dap", optional = true },
+  { "mrjones2014/smart-splits.nvim", optional = true },
+  { "neovim/nvim-lspconfig", optional = true },
+  { "numToStr/Comment.nvim", optional = true },
+  { "nvim-lua/plenary.nvim", optional = true },
+  { "nvim-neo-tree/neo-tree.nvim", optional = true },
+  { "nvim-telescope/telescope-fzf-native.nvim", optional = true },
+  { "nvim-telescope/telescope.nvim", optional = true },
+  { "nvim-tree/nvim-web-devicons", optional = true },
+  { "nvim-treesitter/nvim-treesitter", optional = true },
+  { "onsails/lspkind.nvim", optional = true },
+  { "rafamadriz/friendly-snippets", optional = true },
+  { "rcarriga/cmp-dap", optional = true },
+  { "nvim-neotest/nvim-nio" },
+  { "rcarriga/nvim-dap-ui", optional = true },
+  { "rcarriga/nvim-notify", optional = true },
+  { "rebelot/heirline.nvim", optional = true },
+  { "s1n7ax/nvim-window-picker", optional = true },
+  { "saadparwaiz1/cmp_luasnip", optional = true },
+  { "stevearc/aerial.nvim", optional = true },
+  { "stevearc/dressing.nvim", optional = true },
+  { "williamboman/mason-lspconfig.nvim", optional = true },
+  { "williamboman/mason.nvim", optional = true },
+  { "windwp/nvim-autopairs", optional = true },
+  { "windwp/nvim-ts-autotag", optional = true },
   { "folke/tokyonight.nvim"},
-  { "github/copilot.vim" },
-  {'davidgranstrom/nvim-markdown-preview'},
+  { "github/copilot.vim", event = "InsertEnter", lazy = false,
+    config = function()
+      vim.keymap.set('i', '<C-c>', function () return vim.fn['copilot#Accept']() end, { expr = true, silent = true })
+    end
+  },
+  { 'davidgranstrom/nvim-markdown-preview' },
+  { "LunarVim/bigfile.nvim" },
+  {
+    'Exafunction/codeium.vim',
+    event = 'BufEnter',
+    lazy = true,
+    config = function()
+      vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, { expr = true, silent = true })
+      vim.keymap.set('i', '<C-Tab>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true, silent = true })
+      vim.keymap.set('i', '<C-Shift-Tab>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true, silent = true })
+      vim.keymap.set('i', '<C-x>', function() return vim.fn['codeium#Clear']() end, { expr = true, silent = true })
+    end
+  },
 --   {
 --   "jackMort/ChatGPT.nvim",
 --     event = "VeryLazy",
@@ -72,4 +89,73 @@ return {
 --       "nvim-telescope/telescope.nvim"
 --     }
 -- }
+  {
+    {
+      "nvim-neorg/neorg",
+      build = ":Neorg sync-parsers",
+      lazy = false, -- specify lazy = false because some lazy.nvim distributions set lazy = true by default
+      -- tag = "*",
+      dependencies = { "nvim-lua/plenary.nvim" },
+      config = function()
+        require("neorg").setup {
+          load = {
+            ["core.defaults"] = {}, -- Loads default behaviour
+            ["core.itero"] = {},
+            ["core.concealer"] = {}, -- Adds pretty icons to your documents
+            ["core.dirman"] = { -- Manages Neorg workspaces
+              config = {
+                workspaces = {
+                  index = "~/Dropbox/neorg",
+                },
+                default_workspace = "index",
+              },
+            },
+            ["core.export"] = {},
+            ["core.export.markdown"] = {
+              config = {
+                extensions = "all",
+              },
+            },
+          },
+        }
+      end,
+    },
+  },
+  {
+    "vimwiki/vimwiki",
+    event = "BufRead",
+  },
+{
+  "epwalsh/obsidian.nvim",
+  version = "*",  -- recommended, use latest release instead of latest commit
+  lazy = false,  -- lazy loading
+  ft = "markdown",
+  -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+  -- event = {
+  --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+  --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
+  --   "BufReadPre path/to/my-vault/**.md",
+  --   "BufNewFile path/to/my-vault/**.md",
+  -- },
+  dependencies = {
+    -- Required.
+    "nvim-lua/plenary.nvim",
+
+    -- see below for full list of optional dependencies 👇
+  },
+  opts = {
+    workspaces = {
+      {
+        name = "personal",
+        path = "~/Dropbox/vaults/personal",
+      },
+      {
+        name = "work",
+        path = "~/Dropbox/vaults/work",
+      },
+    },
+
+    -- see below for full list of options 👇
+  },
+  },
 }
