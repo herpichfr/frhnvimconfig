@@ -128,34 +128,4 @@ return {
     },
   },
 
-  -- LSP
-  -- lsp = {
-  --   servers = {
-  --     "pyright",
-  --   },
-  -- 
-  --   config = {
-  --     pyright = {
-  --       settings = {
-  --         pyright = {
-  --           disableLanguageService = false,
-  --         },
-  --
-  --         python = {
-  --           analysis = {
-  --             autoSearchPaths = true,
-  --             diagnosticMode = "openFilesOnly",
-  --             userLibraryCodeForTypes = true,
-  --             diagnosticSeverityOverride = {
-  --               reportunusedImport = "hint",
-  --               reportMissingImports = "error",
-  --               reportGeneralTypeIssues = "none",
-  --               reportOptionalMemberAccess = "warning",
-  --             },
-  --           },
-  --         }
-  --       },
-  --     },
-  --   },
-  -- },
 }
