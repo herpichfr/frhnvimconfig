@@ -3,11 +3,38 @@
 // It uses the Sieve of Eratosthenes algorithm
 // to test if a given number is prime
 
+#include <algorithm>
 #include <cmath>
 #include <iostream>
 #include <vector>
 
 using namespace std;
+
+class InputParser {
+public:
+  InputParser(int &argc, char **argv) {
+    for (int i = 1; i < argc; ++i)
+      this->tokens.push_back(string(argv[i]));
+  }
+
+  const string &getCmdOption(const string &option) const {
+    vector<string>::const_iterator itr;
+    itr = find(this->tokens.begin(), this->tokens.end(), option);
+    if (itr != this->tokens.end() && ++itr != this->tokens.end()) {
+      return *itr;
+    }
+    static const string empty_string("");
+    return empty_string;
+  }
+
+  bool cmdOptionExists(const string &option) const {
+    return find(this->tokens.begin(), this->tokens.end(), option) !=
+           this->tokens.end();
+  }
+
+private:
+  vector<string> tokens;
+};
 
 bool isPrime(int n) {
   if (n <= 1)
@@ -23,10 +50,17 @@ bool isPrime(int n) {
   return true;
 }
 
-int main() {
-  int64_t n;
-  cout << "Enter a number: ";
-  cin >> n;
+int main(int argc, char **argv) {
+  InputParser input(argc, argv);
+  if (input.cmdOptionExists("-h")) {
+    cout << "Usage: " << argv[0] << " -n <number>" << endl;
+    return 0;
+  }
+  if (!input.cmdOptionExists("-n")) {
+    cout << "Error: You must provide a number to check" << endl;
+    return 1;
+  }
+  int64_t n = stoll(input.getCmdOption("-n"));
   if (isPrime(n)) {
     cout << n << " is prime" << endl;
   } else {
@@ -34,11 +68,3 @@ int main() {
   }
   return 0;
 }
-
-// Output
-// Enter a number: 13
-// 13 is prime
-// Enter a number: 15
-// 15 is not prime
-// Enter a number: 23
-// 23 is prime
