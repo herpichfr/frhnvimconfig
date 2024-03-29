@@ -19,7 +19,7 @@ if astronvim.default_colorscheme then
 end
 
 require("nvim-treesitter.configs").setup({
-  ensure_installed = { "markdown", "markdown_inline", ... },
+  ensure_installed = { "markdown", "markdown_inline", 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'cmake', "latex", ... },
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = { "markdown" },
