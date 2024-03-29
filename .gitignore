@@ -6,3 +6,5 @@ node_modules
 *.pyo
 freqs.txt
 model.txt
+.github
+.neoconf*
