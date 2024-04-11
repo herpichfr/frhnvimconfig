@@ -4,11 +4,11 @@ CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 source "$CURRENT_DIR/helpers.sh"
 
-color_full_charge_default="#[bg=gray]"
-color_high_charge_default="#[bg=blue]"
-color_middle_high_charge_default="#[bg=green]"
-color_medium_charge_default="#[bg=yellow]"
-color_low_charge_default="#[bg=red]"
+color_full_charge_default="#[bg=gray]#[fg=black]"
+color_high_charge_default="#[bg=blue]#[fg=white]"
+color_middle_high_charge_default="#[bg=green]#[fg=black]"
+color_medium_charge_default="#[bg=yellow]#[fg=black]"
+color_low_charge_default="#[bg=red]#[fg=yellow]"
 
 color_full_charge=""
 color_high_charge=""
