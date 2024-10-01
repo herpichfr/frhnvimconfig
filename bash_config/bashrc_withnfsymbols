@@ -230,7 +230,7 @@ export PYTHONPATH="${PYTHONPATH}:$HOME/bin/hfit_funcs:$HOME/.local/lib/python3.1
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/bin/lvim:$PATH"
 export PATH="$HOME/.nvm/versions/node/v20.3.1/bin:$PATH"
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/bin:$PATH:/snap/bin"
 
 export TERM=screen-256color
 
