@@ -1,0 +1,207 @@
+# $Id: screen-keys.conf,v 1.7 2010-07-31 11:39:13 nicm Exp $
+#
+# By Nicholas Marriott. Public domain.
+#
+# This configuration file binds many of the common GNU screen key bindings to
+# appropriate tmux key bindings. Note that for some key bindings there is no
+# tmux analogue and also that this set omits binding some commands available in
+# tmux but not in screen.
+#
+# Note this is only a selection of key bindings and they are in addition to the
+# normal tmux key bindings. This is intended as an example not as to be used
+# as-is.
+
+# Set the prefix to C-z.
+unbind C-b
+set -g prefix C-z
+bind C-z send-prefix
+
+setw -g monitor-activity on
+set -g visual-activity on
+
+set -g mode-keys vi
+set -g history-limit 10000
+
+# set xterm-keys
+set-window-option -g xterm-keys on
+set -g @shell_mode 'vi'
+set -g @yank_selection 'primary'
+
+# unbind default tmux jump between panes
+#unbind-key -n C-Left
+#unbind-key -n C-Right
+
+# unbind tmux-vim cut line
+#unbind C-Left
+#unbind C-Right
+
+# y and p as in vim
+# bind Escape copy-mode
+# unbind p
+# bind p paste-buffer
+# bind -t vi-copy 'v' begin-selection
+# bind -t vi-copy 'y' copy-selection
+set-window-option -g mode-keys vi
+bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -in -selection clipboard"
+# bind -t vi-copy 'Space' halfpage-down
+# bind -t vi-copy 'Bspace' halfpage-up
+
+# extra commands for interacting with the ICCCM clipboard
+bind C-c run "tmux save-buffer - | xclipboard -i -sel clipboard"
+bind C-v run "tmux set-buffer \"$(xclipboard -o -sel clipboard)\"; tmux paste-buffer"
+
+# easy-to-remember split pane commands
+bind - split-window -v
+bind | split-window -h
+unbind '"'
+unbind %
+
+# Bind appropriate commands similar to screen.
+# lockscreen ^X x 
+unbind ^X
+bind ^X lock-server
+unbind x
+bind x lock-server
+
+# screen ^a a 
+unbind ^C
+bind C-a new-window
+unbind c
+bind a new-window
+
+# detach ^D d
+unbind ^D
+bind C-d detach
+
+# displays * 
+unbind *
+bind * list-clients
+
+# next ^N n 
+unbind ^N
+bind ^N next-window
+unbind n
+bind n next-window
+
+# title A
+unbind C-A
+bind C-A command-prompt "rename-window %%"
+
+# other ^L
+unbind ^L
+bind ^L last-window
+
+# prev ^P p  
+unbind ^P
+bind ^P previous-window
+unbind p
+bind p previous-window
+
+# windows ^W w 
+unbind C-W
+bind C-W list-windows
+unbind w
+bind w list-windows
+
+# quit \ 
+unbind '\'
+bind '\' confirm-before "kill-server"
+
+# kill K k 
+unbind K
+bind K confirm-before "kill-window"
+unbind k
+bind k confirm-before "kill-window"
+
+# redisplay ^L l 
+unbind ^L
+bind ^L refresh-client
+unbind l
+bind l refresh-client
+
+# focus up - movement between panes with movements
+unbind M-Left
+bind M-Left select-pane -L
+unbind M-Right
+bind M-Right select-pane -R
+unbind M-Up
+bind M-Up select-pane -U
+unbind M-Down
+bind M-Down select-pane -D
+
+# moving between panes with vim movement key
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# resize panes with vim movement keys
+bind -r C-Left resize-pane -L 1
+bind -r C-Down resize-pane -D 1
+bind -r C-Up resize-pane -U 1
+bind -r C-Right resize-pane -R 1
+
+# Fix minimal annoyances
+set -g base-index 1
+set -g escape-time 0
+setw -g aggressive-resize on
+set -g renumber-windows on
+set -g visual-activity on
+
+# " windowlist -b
+unbind '"'
+bind '"' choose-window
+
+# Unable scrolling
+#setw -g mode-mouse off
+#set -g mouse-select-pane off
+#set -g mouse-resize-pane off
+#set -g mouse-select-window off
+set -g mouse off
+
+# set the default terminal mode to 256color mode
+set -g default-terminal "screen-256color" # if active disable the colors of .dircolors from .bashrc
+set -ga terminal-overrides ",xterm-256color*:Tc"
+
+# Colors
+set -g status-bg "#202020" # background color of status bar
+set -g status-fg "#aaabad" # letter colors in the indentification bar 
+# set -g status-right-bg "#202020" # right part of status-bar
+# set -g status-right-fg "#aaabad" # letter colors of right side status bar
+set -g display-panes-colour "#696969" # borders of inactive pane
+set -g display-panes-active-colour "#ee82ee" #"#a66ebe"
+# set -g pane-active-border-fg "#008b8b" #border of active pane
+# set -g pane-border-fg "#696969"
+
+# SSH hostnames
+set -g set-titles on
+set -g set-titles-string "#T"
+
+#temp="#(.tmux/cpu_temp/cpu_temp_status_bg.sh) CPU: #(sensors | grep 'CPU Temperature' | awk '{print $3}') | #(.tmux/cpu_temp/cores_status.sh)"
+
+# batt="#(.tmux/scripts/battery_status_bg.sh) #(.tmux/scripts/battery_icon.sh) #(.tmux/scripts/battery_remain.sh)"
+temp="#(.tmux/cpu_temp/cpu_temp_status_bg_ryzen.sh) #(sensors | grep 'Tctl' | awk '{print $2}')" 
+mem='#(.tmux/cpu_temp/mem_status_bg.sh) MEM: #(.tmux/cpu_temp/mem_status_perc.sh)#[bg=black] |'
+resto='#(.tmux/scripts/getweather.sh) | #(hostname) | %a %h-%d %H:%M | '
+cpu_bar=" CPU: #(.tmux/scripts/cpu_usage.sh)#[fg=default]#[bg=default] "
+#infos="#[fg=green]#($HOME/.tmux/plugins/tmux-mem-cpu-load --colors --powerline-right --interval 2)#[default]"
+set -g status-right-length 150
+set -g status-right $resto$mem$cpu_bar$temp
+set -g status-left-length 50
+
+# List of plugins 
+# set -g @plugin 'tmux-plugins/tpm'
+# set -g @plugin 'tmux-plugins/tmux-sensible'
+# set -g @plugin 'thewtex/tmux-mem-cpu-load'
+
+# Other examples:
+# set -g @plugin 'github_username/plugin_name'
+# set -g @plugin 'git@github.com/user/plugin'
+# set -g @plugin 'git@bitbucket.com/user/plugin'
+
+# plugin to copy/paste in tmux
+#set -g @plugin 'tmux-plugins/tmux-yank'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+# run '~/.tmux/plugins/tpm/tpm'
+#run '~/.tmux/plugins/tmux-mem-cpu-load/tmux-mem-cpu-load.plugin.tmux'
