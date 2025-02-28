@@ -15,5 +15,8 @@ if not pcall(require, "lazy") then
   vim.cmd.quit()
 end
 
+vim.g.copilot_no_tab_map = true
+vim.keymap.set("i", "<C-x>", 'copilot#Accept("\\<CR>")', { expr = true, silent = true, replace_keycodes = false })
+
 require "lazy_setup"
 require "polish"
