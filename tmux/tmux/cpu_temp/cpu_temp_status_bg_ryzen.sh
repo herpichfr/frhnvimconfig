@@ -5,10 +5,10 @@ CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 #cpu_temp=$(< /sys/class/thermal/thermal_zone0/temp)
 #cpu_temp=$(($cpu_temp/1000))
 
-color_good_temp="#[bg=black]"
-color_well_temp="#[bg=green]"
-color_warn_temp="#[bg=yellow]"
-color_crit_temp="#[bg=red]"
+color_good_temp="#[bg=black]#[fg=default]"
+color_well_temp="#[bg=green]#[fg=black]"
+color_warn_temp="#[bg=yellow]#[fg=black]"
+color_crit_temp="#[bg=red]#[fg=white]"
 
 CPULIST="$(sensors | grep -oP 'Tctl.*?\+\K[0-9]+')" 
 

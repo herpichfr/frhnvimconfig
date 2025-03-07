@@ -183,8 +183,7 @@ set -g set-titles-string "#T"
 temp="#(.tmux/cpu_temp/cpu_temp_status_bg_ryzen.sh) #(sensors | grep 'Tctl' | awk '{print $2}')" 
 mem='#(.tmux/cpu_temp/mem_status_bg.sh) MEM: #(.tmux/cpu_temp/mem_status_perc.sh)#[bg=black] |'
 resto='#(.tmux/scripts/getweather.sh) | #(hostname) | %a %h-%d %H:%M | '
-cpu_bar=" CPU: #(.tmux/scripts/cpu_usage.sh)#[fg=default]#[bg=default] "
-#infos="#[fg=green]#($HOME/.tmux/plugins/tmux-mem-cpu-load --colors --powerline-right --interval 2)#[default]"
+cpu_bar="#[fg=default] CPU: #(.tmux/scripts/cpu_usage.sh)#[fg=default]#[bg=default] "
 set -g status-right-length 150
 set -g status-right $resto$mem$cpu_bar$temp
 set -g status-left-length 50

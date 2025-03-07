@@ -180,10 +180,10 @@ set -g set-titles-string "#T"
 #temp="#(.tmux/cpu_temp/cpu_temp_status_bg.sh) CPU: #(sensors | grep 'CPU Temperature' | awk '{print $3}') | #(.tmux/cpu_temp/cores_status.sh)"
 
 batt="#(.tmux/scripts/battery_status_bg.sh) #(.tmux/scripts/battery_icon.sh) #(.tmux/scripts/battery_remain.sh)"
-temp="#(.tmux/cpu_temp/cpu_temp_status_bg_ryzen.sh) #(sensors | grep 'Tctl' | awk '{print $2}') |" 
-mem='#(.tmux/cpu_temp/mem_status_bg.sh) MEM: #(.tmux/cpu_temp/mem_status_perc.sh)#[bg=black] |'
+temp="#(.tmux/cpu_temp/cpu_temp_status_bg_ryzen.sh) #(sensors | grep 'Tctl' | awk '{print $2}') #[bg=default]#[fg=grey]" 
+mem='#(.tmux/cpu_temp/mem_status_bg.sh) MEM: #(.tmux/cpu_temp/mem_status_perc.sh)#[bg=black]'
 resto='#(.tmux/scripts/getweather.sh) | #(hostname) | %a %h-%d %H:%M | '
-cpu_bar=" CPU: #(.tmux/scripts/cpu_usage.sh)#[fg=default]#[bg=default] "
+cpu_bar=" #[fg=default]CPU:#(.tmux/scripts/cpu_usage.sh)#[fg=default]#[bg=default]"
 #infos="#[fg=green]#($HOME/.tmux/plugins/tmux-mem-cpu-load --colors --powerline-right --interval 2)#[default]"
 set -g status-right-length 150
 set -g status-right $resto$mem$cpu_bar$temp$batt
