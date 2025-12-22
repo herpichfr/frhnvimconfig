@@ -46,16 +46,22 @@ print_battery_percentage() {
 		pmset -g batt | grep -o "[0-9]\{1,3\}%"
 	elif command_exists "acpi"; then
 		acpi -b | grep -Eo "[0-9]+%"
+	else
+		echo "N/A"
 	fi
 }
 
 notify_battery_status() {
     # Call `battery_percentage.sh`.
     percentage=$(print_battery_percentage | sed -e 's/%//')
-    if [ $percentage -le 30 -a $percentage -ge 16 ]; then
-        notify-send "Battery is low: $percentage%" "Remaning time is $(print_battery_remain)" --urgency=critical
+    if [ $percentage -eq 30 ]; then
+    	notify-send "tmux: Battery is at 30%" "Remaning time is $(print_battery_remain)" --urgency=normal
+    elif [ $percentage -eq 25 ]; then
+    	notify-send "tmux: Battery is at 25%" "Remaning time is $(print_battery_remain)" --urgency=normal
+    elif [ $percentage -le 20 -a $percentage -ge 16 ]; then
+      notify-send "tmux: Battery is low: $percentage%" "Remaning time is $(print_battery_remain)" --urgency=critical
     elif [ $percentage -le 15 ];then
-        notify-send "tmux: Battery is critically low: $percentage. Please plug in your charger." "Remaning time is $(print_battery_remain)" --urgency=critical
+      notify-send "tmux: Battery is critically low: $percentage. Please plug in your charger." "Remaning time is $(print_battery_remain)" --urgency=critical
     else
         true
     fi
