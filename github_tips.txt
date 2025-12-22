@@ -1,2 +1,0 @@
-# to set a new url to push to
-git remote set-url --push origin git@github.com:herpichfr/splus-gaia-astrometry.git
