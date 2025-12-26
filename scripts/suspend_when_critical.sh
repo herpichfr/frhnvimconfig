@@ -22,8 +22,13 @@ if check_if_battery_present; then
     while true; do
         BATTERY_LEVEL=$(get_battery_level)
         if [ "$BATTERY_LEVEL" -le 10 ]; then
-            notify-send "Battery critical" "Battery level is at ${BATTERY_LEVEL}%. The system will hibernate in 60 seconds."
-            sleep 60
+            # Add notification with counter before suspending
+            COUNTER=60
+            while [ $COUNTER -gt 0 ]; do
+                notify-send "Battery critical" "System will suspend in $COUNTER seconds due to low battery."
+                sleep 1
+                COUNTER=$((COUNTER - 1))
+            done
             suspend_system
             exit 0
         fi
