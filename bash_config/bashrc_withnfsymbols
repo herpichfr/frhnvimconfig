@@ -287,3 +287,5 @@ echo -e "${C_RED}
         WARNING: You are entering the restricted area of Hydra.
                      Access credentials required:
 "
+
+source /home/herpich/.config/broot/launcher/bash/br
