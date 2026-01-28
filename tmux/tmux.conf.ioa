@@ -180,12 +180,13 @@ set -g set-titles-string "#T"
 #temp="#(.tmux/cpu_temp/cpu_temp_status_bg.sh) CPU: #(sensors | grep 'CPU Temperature' | awk '{print $3}') | #(.tmux/cpu_temp/cores_status.sh)"
 
 # batt="#(.tmux/scripts/battery_icon.sh) #(.tmux/scripts/battery_percentage.sh) |"
-temp="#(.tmux/cpu_temp/cpu_temp_status_bg.sh) #(sensors | grep 'Package id 0:' | awk '{printf $4}')" 
-mem='#(.tmux/cpu_temp/mem_status_bg.sh) MEM: #(.tmux/cpu_temp/mem_status_perc.sh)#[bg=black]|'
-resto='#(.tmux/scripts/getweather.sh) | #(hostname) | %a %h-%d %H:%M | '
+resto='#(.tmux/scripts/getweather.sh) | #(hostname) | %a %h-%d %H:%M |'
+mem='#(.tmux/scripts/mem_status_bg.sh) MEM: #(.tmux/scripts/mem_status_perc.sh)#[bg=default] |'
+gpu_bar="#(.tmux/scripts/get_gpu_load.sh) |"
 cpu_bar="#[fg=default] CPU: #(.tmux/scripts/cpu_usage.sh)#[fg=default]#[bg=default]"
+temp="#(.tmux/cpu_temp/cpu_temp_status_bg.sh) #(sensors | grep 'Package id 0:' | awk '{printf $4}')" 
 set -g status-right-length 150
-set -g status-right $resto$mem$cpu_bar$temp
+set -g status-right $resto$mem$gpu_bar$cpu_bar$temp
 set -g status-left-length 50
 
 # List of plugins 
