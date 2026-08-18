@@ -181,8 +181,8 @@ set -g set-titles-string "#T"
 
 # batt="#(.tmux/scripts/battery_icon.sh) #(.tmux/scripts/battery_percentage.sh) |"
 resto='#(.tmux/scripts/getweather.sh) | #(hostname) | %a %h-%d %H:%M |'
-mem='#(.tmux/scripts/mem_status_bg.sh) MEM: #(.tmux/scripts/mem_status_perc.sh)#[bg=default] |'
-gpu_bar="#(.tmux/scripts/get_gpu_load.sh) |"
+mem='#(.tmux/scripts/mem_status_bg.sh) MEM: #(.tmux/scripts/mem_status_perc.sh) #[fg=default]#[bg=default]|'
+gpu_bar="#(.tmux/scripts/get_gpu_load.sh)|"
 cpu_bar="#[fg=default] CPU: #(.tmux/scripts/cpu_usage.sh)#[fg=default]#[bg=default]"
 temp="#(.tmux/cpu_temp/cpu_temp_status_bg.sh) #(sensors | grep 'Package id 0:' | awk '{printf $4}')" 
 set -g status-right-length 150
