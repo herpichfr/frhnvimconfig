@@ -10,10 +10,35 @@ function get_gpu_load() {
       GPU_LOAD=$(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits)
   elif command -v nvtop &> /dev/null; then
       # Check for Intel GPU
-      GPU_LOAD=$(nvtop --query-gpu=utilization.gpu --format=csv,noheader,nounits)
+      # nvtop will print GPU utilization for all cards available. Pick the one
+      # identified as Intel in the "device_name" field.
+      # The output of nvtop -s is the following JSON structure:
+      # {
+      #    "device_name": "Arrow Lake-S (Intel Graphics)",
+      #    "gpu_clock": "1000MHz",
+      #    "mem_clock": null,
+      #    "temp": null,
+      #    "fan_speed": "CPU Fan",
+      #    "power_draw": null,
+      #    "gpu_util": null,
+      #    "mem_util": null
+      #   },
+      #   {
+      #    "device_name": "NVIDIA RTX A1000",
+      #    "gpu_clock": "495MHz",
+      #    "mem_clock": "810MHz",
+      #    "temp": "43C",
+      #    "fan_speed": "30%",
+      #    "power_draw": null,
+      #    "gpu_util": "41%",
+      #    "mem_util": "15%"
+      #   }
+      GPU_LOAD=$(nvtop -s json | jq -r '.[] | select(.device_name | test("Intel"; "i")) | .gpu_util' | tr -d '%')
   elif command -v amd_gpu_top &> /dev/null; then
       # Check for AMD GPU
-      GPU_LOAD=$(amd_gpu_top --json | jq '.gpus[0].load' | head -n 1)
+      # TODO: To be implemented
+      # GPU_LOAD=$(amd_gpu_top --json | jq '.gpus[0].load' | head -n 1)
+      GPU_LOAD="0"
   else
       GPU_LOAD="0"
   fi
