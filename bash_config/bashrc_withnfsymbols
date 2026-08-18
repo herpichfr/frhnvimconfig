@@ -236,11 +236,19 @@ if ! shopt -oq posix; then
 fi
 
 # update PYTHONPATH with my packages dir
-export PYTHONPATH="${PYTHONPATH}:$HOME/bin/hfit_funcs:$HOME/.local/lib/python3.10/site-packages:$HOME/.local/bin/"
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.local/bin/lvim:$PATH"
-export PATH="$HOME/.nvm/versions/node/v20.3.1/bin:$PATH"
-export PATH="$HOME/bin:$PATH:/snap/bin"
+# export PYTHONPATH="${PYTHONPATH}:$HOME/bin/hfit_funcs:$HOME/.local/bin/"
+# export PATH="$HOME/.local/bin:$PATH"
+# export PATH="$HOME/.local/bin/lvim:$PATH"
+# export PATH="$HOME/.nvm/versions/node/v20.3.1/bin:$PATH"
+# export PATH="$HOME/bin:$PATH:/snap/bin"
+
+# Search for the latest Python venv (e.g., py311, py312, py313) in HOME
+LATEST_VENV=$(ls -d $HOME/py[0-9]* 2>/dev/null | sort -V | tail -n 1)
+
+# If found and contains an activation script, source it
+if [ -n "$LATEST_VENV" ] && [ -f "$LATEST_VENV/bin/activate" ]; then
+    source "$LATEST_VENV/bin/activate"
+fi
 
 export TERM=screen-256color
 
