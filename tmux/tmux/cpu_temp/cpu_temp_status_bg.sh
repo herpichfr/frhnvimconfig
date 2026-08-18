@@ -5,7 +5,7 @@ CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 #cpu_temp=$(< /sys/class/thermal/thermal_zone0/temp)
 #cpu_temp=$(($cpu_temp/1000))
 
-color_good_temp="#[bg=black]#[fg=white]"
+color_good_temp="#[bg=default]#[fg=white]"
 color_well_temp="#[bg=green]#[fg=black]"
 color_warn_temp="#[bg=yellow]#[fg=black]"
 color_crit_temp="#[bg=red]#[fg=white]"
